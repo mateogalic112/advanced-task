@@ -20,7 +20,7 @@ function App() {
 
   React.useEffect(() => {
     if (data && data?.colors[0].hex !== "") {
-      setList(list.add(data?.colors[0]));
+      setList((list) => list.add(data?.colors[0]));
       setButtonColor(null);
       setColorError(null);
     }
