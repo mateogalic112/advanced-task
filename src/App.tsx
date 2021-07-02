@@ -11,7 +11,7 @@ import List from "./components/List";
 import { uuid } from "uuidv4";
 
 function App() {
-  const [list, setList] = React.useState<Set<Color>>(new Set());
+  const [list, setList] = React.useState<Color[]>([]);
   const [clicked, setClicked] = React.useState(false);
 
   const { data, loading, error } = useFetch(clicked);
@@ -20,7 +20,11 @@ function App() {
 
   React.useEffect(() => {
     if (data && data?.colors[0].hex !== "") {
-      setList((list) => list.add(data?.colors[0]));
+      if (list.find((item) => item.hex === data?.colors[0].hex)) {
+        return;
+      } else {
+        setList((list) => [...list, data?.colors[0]]);
+      }
       setButtonColor(null);
       setColorError(null);
     }
@@ -46,9 +50,11 @@ function App() {
       setColorError("Wrong color syntax");
     } else {
       setButtonColor(keyboardColor);
-      setList(list.add({ id: uuid(), hex: keyboardColor }));
       setKeyboardColor("");
       setColorError(null);
+    }
+    if (!list.find((item) => item.hex === data?.colors[0].hex)) {
+      setList((list) => [...list, { id: uuid(), hex: keyboardColor }]);
     }
   };
 

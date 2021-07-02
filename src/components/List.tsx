@@ -8,8 +8,8 @@ import ListItem from "./ListItem";
 import { Color } from "../models/ColorResponse";
 
 type ListProps = {
-  list: Set<Color>;
-  setList: React.Dispatch<React.SetStateAction<Set<Color>>>;
+  list: Array<Color>;
+  setList: React.Dispatch<React.SetStateAction<Array<Color>>>;
   hexColor: string;
 };
 
@@ -21,7 +21,7 @@ const List: React.FC<ListProps> = ({ list, setList, hexColor }) => {
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination?.index as number, 0, reorderedItem);
 
-    setList(new Set([...items]));
+    setList([...items]);
   };
 
   return (
@@ -29,7 +29,7 @@ const List: React.FC<ListProps> = ({ list, setList, hexColor }) => {
       <Droppable droppableId="colors">
         {(provided) => (
           <ul {...provided.droppableProps} ref={provided.innerRef}>
-            {Array.from(list).map((item: Color, index: number) => {
+            {list.map((item: Color, index: number) => {
               const itemClasses = classNames({
                 "list-item": true,
                 active: hexColor === item.hex,
