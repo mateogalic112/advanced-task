@@ -28,7 +28,7 @@ function App() {
       setButtonColor(null);
       setColorError(null);
     }
-  }, [data, clicked]);
+  }, [data, clicked, list]);
 
   const handleClick = () => {
     setClicked((clicked) => !clicked);
@@ -53,7 +53,7 @@ function App() {
       setKeyboardColor("");
       setColorError(null);
     }
-    if (!list.find((item) => item.hex === data?.colors[0].hex)) {
+    if (!list.find((item) => item.hex === keyboardColor)) {
       setList((list) => [...list, { id: uuid(), hex: keyboardColor }]);
     }
   };
