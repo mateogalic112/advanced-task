@@ -31,12 +31,19 @@ ul {
   pointer-events: none;
 }
 
-.list-item {
+li {
   list-style: none;
+}
+
+.list-item {
   margin: 1rem 0;
   padding: 0.25rem 3rem;
 }
 
 .active {
   font-weight: bold;
+}
+
+.dragged {
+  background-color: aqua;
 }
