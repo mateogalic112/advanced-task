@@ -9,10 +9,10 @@ export interface ColorResponse {
 }
 
 export interface Color {
-  timestamp: number;
+  timestamp?: number;
   hex: string;
-  id: number;
-  tags: Tag[];
+  id: number | string;
+  tags?: Tag[];
 }
 
 interface Tag {

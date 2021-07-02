@@ -15,8 +15,6 @@ type ListProps = {
 
 const List: React.FC<ListProps> = ({ list, setList, hexColor }) => {
   const handleOnDragEnd = (result: DropResult) => {
-    console.log(result);
-
     if (!result.destination) return;
 
     const items = Array.from(list);
