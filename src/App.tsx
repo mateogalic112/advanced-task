@@ -53,7 +53,7 @@ function App() {
       setKeyboardColor("");
       setColorError(null);
     }
-    if (!list.find((item) => item.hex === keyboardColor)) {
+    if (!list.find((item) => item.hex === keyboardColor && OK)) {
       setList((list) => [...list, { id: uuid(), hex: keyboardColor }]);
     }
   };
